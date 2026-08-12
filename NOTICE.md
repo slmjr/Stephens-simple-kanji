@@ -11,4 +11,4 @@ The data distributed with Stephen's Simple Kanji is not an official EDRDG distri
 
 Any errors introduced by these transformations are the responsibility of this project.
 
-Original application code, UI, lesson flow, SRS logic, mnemonics, and project documentation are licensed under the project license in `LICENSE`. Embedded dictionary-derived data from KANJIDIC2/JMdict remains subject to the EDRDG/CC BY-SA 4.0 licensing terms.
+Original application code, UI, lesson flow, SRS logic, memory-aid system, and project documentation are licensed under the project license in `LICENSE`. Embedded dictionary-derived data from KANJIDIC2/JMdict remains subject to the EDRDG/CC BY-SA 4.0 licensing terms.

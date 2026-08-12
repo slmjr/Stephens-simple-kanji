@@ -14,7 +14,7 @@ Progress is stored in your browser's `localStorage` only. This can include:
 - review state
 - SRS stages and due timestamps
 - accuracy statistics
-- personal mnemonics
+- personal memory aids
 - settings
 - backup metadata
 

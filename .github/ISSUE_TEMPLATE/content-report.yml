@@ -1,0 +1,37 @@
+name: Kanji content report
+description: Report a questionable meaning, reading, vocabulary label, or memory aid.
+title: "Content report: "
+labels:
+  - content
+body:
+  - type: input
+    id: kanji
+    attributes:
+      label: Kanji and frequency rank
+      placeholder: "Example: 日, rank 1"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Meaning
+        - Reading
+        - Vocabulary
+        - Part-of-speech label
+        - Memory aid
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What looks wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction and source
+      description: A dictionary or other reliable source is especially helpful.
