@@ -1,116 +1,108 @@
 # Stephen's Simple Kanji
 
-A free, offline-first, frequency-ordered kanji SRS for learning the 2000 most common kanji in 40 levels.
+A free, private, offline-first SRS for learning 2,000 frequency-ranked Japanese kanji in 40 levels.
 
-Stephen's Simple Kanji is a single-file browser app: no account, no server, no build step required. It includes lessons, reviews, SRS scheduling, beginner-safe meaning display, readings with kana/romaji support, vocabulary examples, mnemonics, progress backup/import, and a recovery level-jump option.
+No account, server, subscription, or build step is required to use the app. Download `index.html`, open it in a modern browser, and start studying.
 
+![Stephen's Simple Kanji dashboard](screenshots/dashboard-desktop.png)
 
-Features
+## Why this kanji SRS?
 
-- **2000 kanji** split into **40 levels** of 50 kanji each
-- Ordered by **KANJIDIC2 frequency rank**, not by a proprietary course order
-- Browser-only SRS with stages: Seed, Sprout, Leaf, Branch, Tree, Grove, Forest, Mastered
-- Meaning and reading review prompts
-- Kana, katakana, and forgiving romaji input support
-- Beginner-safe primary meanings with expandable dictionary notes
-- Kunyomi markers such as prefix/suffix-only and okurigana notes
-- Vocabulary examples from JMdict-derived data, with simplified part-of-speech labels
-- Personal mnemonic notes
-- JSON backup export/import
-- Level-jump recovery option if browser storage is lost
-- Optional donation links; all features remain free
+Stephen's Simple Kanji teaches characters in KANJIDIC2 newspaper-frequency order. It concentrates early study on kanji learners are more likely to encounter while reading.
 
+The application includes:
 
-Try it locally
+- 2,000 kanji split into 40 levels of 50
+- meaning and reading lessons
+- browser-based SRS scheduling
+- kana, katakana, and forgiving romaji input
+- beginner-focused meanings with expandable dictionary notes
+- vocabulary examples derived from JMdict
+- clearly marked reading restrictions and okurigana
+- data-grounded memory aids and private personal notes
+- seven-day review forecasting
+- a 28-day study activity calendar
+- weak-item detection
+- JSON backup, import, and level-jump recovery
+- per-kanji content-report details
 
-Download or clone the repository, then open:
+![Kanji lesson view](screenshots/lesson-desktop.png)
 
-```text
-index.html
-```
+## Use it
 
-No install is required.
+Download or clone the repository and open `index.html`, or use the hosted app at **https://slmjr.github.io/Stephens-simple-kanji/**.
 
+The repository URL in `src/data/metadata.json` lets in-app content reports open a prefilled GitHub issue.
 
-GitHub Pages deployment
+Browser storage is scoped to the exact site origin. Moving between a local file, a GitHub Pages URL, and a custom domain creates separate storage locations. Export a backup before changing URLs.
 
-This is a static app and works well with GitHub Pages.
+Some browsers block persistent storage for directly opened `file://` pages. The app now falls back to session-only mode instead of trapping the learner on onboarding, and displays a warning when progress will not survive closing the tab. The published GitHub Pages version is recommended for persistent use.
 
-Suggested setup:
+## Privacy and backups
 
-1. Put `index.html` in the repository root.
-2. In GitHub, go to **Settings → Pages**.
-3. Choose the `main` branch and root folder.
-4. Publish.
-
-Important: browser storage is scoped to the exact site origin. Moving from one URL to another, such as from `https://username.github.io/repo/` to a custom domain, can make previous localStorage progress appear missing. Export a backup before changing domains or paths.
-
-
-Privacy and backups
-
-Your progress is saved only in your browser's `localStorage`.
-
-The app does **not** require an account and does **not** sync progress to a server.
+Progress stays in the browser's `localStorage`. The app has no account and sends no study data to a server.
 
 Stored locally:
 
-- display name
-- current level
-- lesson/review state
-- SRS due dates
-- accuracy counts
-- personal mnemonics
-- settings
-- backup metadata
+- display name and current level
+- lesson and SRS state
+- due dates and accuracy counts
+- study activity totals
+- personal memory aids and accepted meanings
+- settings and backup metadata
 
-Your data can be lost if you:
+Browser data can disappear after clearing site data, using private browsing, switching browsers or devices, or changing the hosted URL. Download backup JSON files regularly.
 
-- clear history/cache/site data
-- use private/incognito browsing
-- switch browsers/devices
-- run cleanup tools
-- change GitHub Pages URL/domain/path
+## Memory-aid policy
 
-Use **Download backup file** regularly. Importing a backup is the only full restore method.
+Version 1.1 removed the original generated mnemonic corpus. Built-in aids now use displayed meanings, listed readings, and real bundled vocabulary. Visual imagination is explicitly labelled as a memory cue rather than historical etymology.
 
-#
-Level-jump recovery
+See [Memory-aid guidelines](docs/MEMORY_AIDS.md). Learners can also save a personal memory aid for every kanji.
 
-If your storage is lost and you do not have a backup, the Settings page includes a **jump to level** option.
+## Development
 
-This can help you resume near your previous level, but it does **not** restore:
+The public app remains one self-contained file, but its maintainable source is separated:
 
-- review history
-- SRS due dates
-- item accuracy
-- personal mnemonics
-- mastered-item state
+```text
+src/index.template.html   page structure and metadata
+src/styles.css            application styles
+src/app.js                SRS and interface logic
+src/data/kanji.json       embedded KANJIDIC2/JMdict-derived data
+src/data/metadata.json    data version and repository URL
+scripts/build.mjs         single-file build
+scripts/check.mjs         data and build checks
+```
 
-For full recovery, use an exported backup JSON file.
+Build and verify with Node.js 22 or newer:
 
+```bash
+npm run build
+npm test
+```
 
-Data and attribution
+Commit the regenerated `index.html` with source changes. GitHub Actions checks that the generated file is current.
 
-Kanji and dictionary-derived fields are based in part on **KANJIDIC2** and **JMdict** from the Electronic Dictionary Research and Development Group (EDRDG), used under Creative Commons Attribution-ShareAlike 4.0 International.
+## Content corrections
 
-Stephen's Simple Kanji adds its own frequency-level ordering, SRS labels, UI, mnemonics, beginner display filters, and learning flow.
+Accuracy matters. Open a kanji in the app and select **Report content problem** for a prefilled report containing its ID, rank, readings, meanings, and data version.
 
-See:
+Reports about readings, meanings, vocabulary, part-of-speech labels, or memory aids are welcome. Reliable dictionary or etymology sources are especially helpful.
 
-- [`NOTICE.md`](NOTICE.md)
-- [`DATA_LICENSE.md`](DATA_LICENSE.md)
+## Data and attribution
 
+Kanji and dictionary-derived fields are based in part on KANJIDIC2 and JMdict from the Electronic Dictionary Research and Development Group (EDRDG), used under Creative Commons Attribution-ShareAlike 4.0 International.
 
-Donations
+The project adds its own frequency-level ordering, SRS labels, UI, memory-aid system, display filters, and learning flow.
 
-Stephen's Simple Kanji is free to use. Donations are optional support only and do not unlock features, change licensing terms, or affect access to the app.
+See [NOTICE.md](NOTICE.md) and [DATA_LICENSE.md](DATA_LICENSE.md).
 
-- Ko-fi: <https://ko-fi.com/smjp53096>
-- EVM: `0x56F9ef45f059db623fC971dFfF79B3Aa5717cFDb`
-- Bitcoin: `bc1q89jdjfnds2sgnuzqqjhqmnlcahu9zcpx23ycgh`
-- Solana: `HDt7aHZSe2w4CjHj4sNFHAbQVdShADBrgS1hRrRo1n8b`
+## Donations
 
+Every feature remains free. Optional donations support maintenance and content corrections.
 
-License
+- [Ko-fi](https://ko-fi.com/smjp53096)
+- Additional cryptocurrency options are available inside the app's Data page.
 
-Original application code, UI, SRS logic, mnemonics, and project documentation are provided under the MIT License. Embedded dictionary-derived data remains subject to EDRDG/CC BY-SA 4.0 licensing terms. See [`LICENSE`](LICENSE), [`NOTICE.md`](NOTICE.md), and [`DATA_LICENSE.md`](DATA_LICENSE.md).
+## License
+
+Original application code, UI, SRS logic, memory-aid system, and project documentation are provided under the MIT License. Embedded dictionary-derived data remains subject to EDRDG/CC BY-SA 4.0. See [LICENSE](LICENSE), [NOTICE.md](NOTICE.md), and [DATA_LICENSE.md](DATA_LICENSE.md).

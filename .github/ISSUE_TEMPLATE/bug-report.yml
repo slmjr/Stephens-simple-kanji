@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a problem with lessons, reviews, backups, or the interface.
+title: "Bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: Tell us exactly what you clicked or entered.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: "Example: Firefox 141 on Windows 11"
